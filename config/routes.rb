@@ -6,9 +6,9 @@ Rails.application.routes.draw do
 
   namespace :api do
   	namespace :v1 do
-    		patch 'edit-survey/:id', to: 'surveys#update', as: 'update_survey'
-    		resources :surveys, only: [:create, :show] do
-	        resources :components, only: [:create, :update, :destroy]
+  		patch 'edit-survey/:id', to: 'surveys#update', as: 'update_survey'
+  		resources :surveys, only: [:create, :show, :index] do
+  			resources :components, only: [:index, :create, :update, :destroy]
     	end
   	end
   end

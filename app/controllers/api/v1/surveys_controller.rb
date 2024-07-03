@@ -1,6 +1,12 @@
 class Api::V1::SurveysController < ApplicationController
 	skip_before_action :verify_authenticity_token
-	before_action :find_survey, only:[:create, :update, :show]
+	before_action :find_survey, only:[:update, :show]
+
+
+	def index
+		@survey = Survey.all
+		render json: @survey
+	end
 
  	def create
    @survey = Survey.new(survey_params)

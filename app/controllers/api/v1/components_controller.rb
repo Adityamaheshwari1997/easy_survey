@@ -1,7 +1,12 @@
 class Api::V1::ComponentsController < ApplicationController
 	skip_before_action :verify_authenticity_token
-	before_action :set_survey, only:[:create, :update, :destroy]
+	before_action :set_survey, only:[:create, :update, :destroy, :index ]
 	before_action :set_component, only:[:update, :destroy]
+
+	def index
+		@components = @survey.components
+		render json: @components
+	end
 
 	def create
 		@component = @survey.components.build(component_params)
